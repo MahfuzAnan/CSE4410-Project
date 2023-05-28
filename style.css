@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.site_name {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 25px;
+}
+
+.nav_links {
+  list-style: none;
+}
+
+.nav_links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav_links li a {
+  transition: all 0.3s ease 0s;
+  color: #e5f1f7;
+  text-decoration: none;
+}
+
+.nav_links li a:hover {
+  color: #0088a9;
+}
+
+.lbutton {
+  opacity: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+  background-color: #081642;
+}
+
+.container {
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.container .form {
+  width: 100%;
+  padding: 30px;
+  background-color: #fff;
+}
+
+.container .form .title {
+  position: relative;
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.form .title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  background-color: rgb(0, 136, 169);
+  border-radius: 25px;
+}
+
+.form .input-field {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.input-field input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 0 35px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  border-bottom: 2px solid #ccc;
+  border-top: 2px solid transparent;
+}
+
+.input-field input:is(:focus, :valid) {
+  border-bottom-color: rgb(0, 136, 169);
+}
+
+.input-field i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 23px;
+  transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) ~ i {
+  color: rgb(0, 136, 169);
+}
+
+.input-field i.icon {
+  left: 0;
+}
+
+.input-field i.showHidepw {
+  right: 0;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.error_message {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: red;
+}
+
+.form .button {
+  margin-top: 35px;
+}
+
+.form .button input {
+  border: none;
+  color: #fff;
+  background-color: rgb(0, 136, 169);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 25px;
+  transition: all 0.2s ease;
+}
+
+.form .button input:hover {
+  background-color: rgb(0, 121, 151);
+}
+
+.form .social-text {
+  color: #808080;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 15px;
+}
+
+.form .social-media {
+  display: flex;
+  justify-content: center;
+}
+
+.form .social-icon {
+  height: 46px;
+  width: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: rgb(0, 136, 169);
+  transition: all 0.2s ease;
+}
+
+.form .social-icon:hover {
+  background-color: rgb(0, 121, 151);
+}
