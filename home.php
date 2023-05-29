@@ -9,7 +9,7 @@ if (empty($_SESSION["email"])) {
     exit;
 }
 
-$sql = "SELECT * FROM books";
+$sql = "SELECT * FROM books WHERE no_of_copies > 0";
 $result = mysqli_query($conn, $sql);
 $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
@@ -108,6 +108,7 @@ $books = mysqli_fetch_all($result, MYSQLI_ASSOC);
                             <h5 class="card-title"><?php echo $book['title']; ?></h5>
                             <p class="card-text"><strong>Author:</strong> <?php echo $book['author']; ?></p>
                             <p class="card-text"><strong>ISBN:</strong> <?php echo $book['isbn']; ?></p>
+                            <a href="book_details.php?id=<?php echo $book['book_id']; ?>" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
                 </div>

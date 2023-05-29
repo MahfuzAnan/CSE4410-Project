@@ -9,12 +9,19 @@ if (empty($_SESSION["email"])) {
     exit;
 }
 
-// Retrieve user information from the database
-$email = $_SESSION["email"];
-$sql = "SELECT * FROM member WHERE email = '$email'";
-$result = mysqli_query($conn, $sql);
-$user = mysqli_fetch_assoc($result);
+// Check if the book ID is provided in the URL
+if (isset($_GET['id'])) {
+    $bookId = $_GET['id'];
 
+    // Retrieve the book details from the database
+    $sql = "SELECT * FROM books WHERE book_id = '$bookId'";
+    $result = mysqli_query($conn, $sql);
+    $book = mysqli_fetch_assoc($result);
+} else {
+    // Redirect to the home page if no book ID is provided
+    header("Location: home.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +30,7 @@ $user = mysqli_fetch_assoc($result);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Library Management System - Book Details</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
         .container {
@@ -80,12 +87,12 @@ $user = mysqli_fetch_assoc($result);
         header nav ul li a:hover {
             color: #ccc;
         }
-
+        
     </style>
 </head>
 <body>
     <header>
-        <h1>Library Management System</h1>
+        <h1>Welcome to the Library Management System</h1>
         <nav>
             <ul>
                 <li><a href="home.php">Home</a></li>
@@ -100,11 +107,13 @@ $user = mysqli_fetch_assoc($result);
     </header>
 
     <div class="container">
-        <h2>User Profile</h2>
+        <h2>Book Details</h2>
         <div class="card">
-            <h5 class="card-title">Profile Information</h5>
-            <p class="card-text"><strong>Name:</strong> <?php echo $user['name']; ?></p>
-            <p class="card-text"><strong>Email:</strong> <?php echo $user['email']; ?></p>
+            <h5 class="card-title"><?php echo $book['title']; ?></h5>
+            <p class="card-text"><strong>Author:</strong> <?php echo $book['author']; ?></p>
+            <p class="card-text"><strong>ISBN:</strong> <?php echo $book['isbn']; ?></p>
+            <!-- <p class="card-text"><strong>Category:</strong> <?php echo $book['category']; ?></p>
+            <p class="card-text"><strong>Description:</strong> <?php echo $book['description']; ?></p> -->
         </div>
     </div>
 
