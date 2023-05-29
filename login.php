@@ -1,99 +1,102 @@
 <?php
-include 'dbinfo.php'; 
-?>  
+require 'config.php';
+session_start();
+$passError = $emailError = false;
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $sql = "SELECT * FROM member WHERE email='$email' and password='$password'";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_array($result);
+        $_SESSION["member_id"] = $row['member_id'];
+        $_SESSION["email"] = $row['email'];
+        $_SESSION["name"] = $row['name'];
+        echo "<script> alert('Login done'); </script>";
+        header("location: home.php");
+        exit();
+    } else {
+        $emailError = true;
+    }
+}
+?>
 
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Iconscout CSS -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <title>Login</title>
+</head>
+
 <body>
-<h1>Login</h1>
+    <!-- <header>
+        <a class="site_name" href="home.php">THIKANA.COM</a>
+        <nav>
+            <ul class="nav_links">
+                <li><a href="home.php">Home</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="item_add">Add Property</a></li>
+            </ul>
+        </nav>
+        <p class="lbutton">Log in</p>
+    </header> -->
 
-<?php
-//always start the session before anything else!!!!!! 
-session_start(); 
+    <section class="loginReg">
+        <div class="container">
+            <div class="forms">
+                <div class="form login">
+                    <span class="title">Login</span>
 
-if(isset($_POST['username']) and isset($_POST['password']))  { //check null
-	$username = $_POST['username']; // text field for username 
-	$password = $_POST['password']; // text field for password
-	
-// store session data
-$_SESSION['username']=$username;
+                    <form action="#" method="post">
+                        <div class="input-field">
+                            <input type="text" name="email" id="email" placeholder="Enter your email" required>
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+                        <?php if ($emailError) { ?>
+                            <p class="error_message"> Wrong Email </p><?php } ?>
 
-//connect to the db 
-
-$link = mysqli_connect($host,$user,$pass) or die( "Unable to connect");
-mysqli_select_db($link, $database) or die( "Unable to select database");
-
-        //Our SQL Query
-        	$sql_query = "Select U.Username From user AS U, staff AS S Where U.Username = '$username' AND U.Password = '$password' AND U.Username = S.Username";  
-
-        //Run our sql query
-           $result = mysqli_query ($link, $sql_query)  or die(mysqli_error($link));  
-		   
-			if($result == false)
-			{
-				echo 'The query failed.';
-				exit();
-			}
-			if(mysqli_num_rows($result) == 1)
-			{ 
-			//the username and password matches the database 
-			//move them to the page to which they need to go 
-				
-			// Fetch the row from the result set
-				$row = mysqli_fetch_assoc($result);
-				$fetchedUsername = $row['Username'];
-				
-				// Debug output
-				echo "Query returned 1 row. Fetched username: $fetchedUsername";
-
-				header('Location: AdminSummary.php');	
-				exit();
-			}
+                        <div class="input-field">
+                            <input type="password" class="password" name="password" placeholder="Enter your password" required>
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidepw"></i>
+                        </div>
+                        <?php if ($passError) { ?>
+                            <p class="error_message"> Wrong Password </p><?php } ?>
 
 
-		//Our SQL Query
-           $sql_query = "Select Username From user Where Username = '$username' AND Password = '$password'";  
+                        <div class="input-field button">
+                            <input type="submit" name="login" value="Login Now">
+                        </div>
+                    </form>
 
-            //Run our sql query
-           $result = mysqli_query ($link, $sql_query)  or die(mysqli_error($link));  
-			if($result == false)
-			{
-				echo 'The query failed.';
-				exit();
-			}
-
-			//this is where the actual verification happens 
-			if(mysqli_num_rows($result) == 1){ 
-			//the username and password matches the database 
-			//move them to the page to which they need to go 
-				header('Location: UserSummary.php');
-			   
-			}else{ 
-			$err = 'Incorrect username or password' ; 
-			} 
-			//then just above your login form or where ever you want the error to be displayed you just put in 
-			echo "$err";
-    } 
-	
-?>	
-
-<form action="" method="post">
-<table>
-<tr>
-    <td>Username</td>
-    <td><input type="text" name="username" required/></td>
-</tr>
-<tr>
-    <td>Password</td>
-    <td><input type="text" name="password" required/></td>
-</tr>
-</table>
-
-<input type="Submit" value="Login"/>
-</form>
-<form action="NewUserRegistration.php" method="post">
-<input type="Submit" value="Create Account"/>
-</form>
-
-
+                    <div class="login-signup">
+                        <span class="text">Not a member?
+                            <a href="register.php" class="text signup-link">Signup now</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+    <script>
+        $(function() {
+            $("form").validate();
+        });
+    </script>
 </body>
+
 </html>

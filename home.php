@@ -1,5 +1,4 @@
 <?php
-// Your database connection code
 require "config.php";
 
 // Start the session and check for an active session

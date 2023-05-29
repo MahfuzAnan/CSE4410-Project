@@ -1,5 +1,4 @@
 <?php
-// Your database connection code
 require "config.php";
 
 // Start the session and check for an active session
@@ -56,6 +55,10 @@ if (isset($_GET['id'])) {
             margin-bottom: 5px;
         }
 
+        .card-button {
+            margin-top: 15px;
+        }
+
         header {
             background-color: #333;
             padding: 20px;
@@ -92,7 +95,7 @@ if (isset($_GET['id'])) {
 </head>
 <body>
     <header>
-        <h1>Welcome to the Library Management System</h1>
+        <h1>Library Management System</h1>
         <nav>
             <ul>
                 <li><a href="home.php">Home</a></li>
@@ -114,6 +117,7 @@ if (isset($_GET['id'])) {
             <p class="card-text"><strong>ISBN:</strong> <?php echo $book['isbn']; ?></p>
             <!-- <p class="card-text"><strong>Category:</strong> <?php echo $book['category']; ?></p>
             <p class="card-text"><strong>Description:</strong> <?php echo $book['description']; ?></p> -->
+            <a href="borrow.php?id=<?php echo $book['book_id']; ?>" class="btn btn-primary card-button">Borrow</a>
         </div>
     </div>
 

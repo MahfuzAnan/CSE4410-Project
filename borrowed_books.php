@@ -14,15 +14,23 @@ $sql = "SELECT * FROM member WHERE email = '$email'";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);
 
+// Retrieve borrowed books for the user
+$BorrowSql = "SELECT b.title, b.author, b.isbn
+              FROM borrow AS br
+              JOIN member AS m ON m.member_id = br.member_id
+              JOIN books AS b ON b.book_id = br.book_id
+              WHERE m.member_id = '{$user['member_id']}'";
+$result = mysqli_query($conn, $BorrowSql);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Borrowed Books</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
         .container {
@@ -34,7 +42,7 @@ $user = mysqli_fetch_assoc($result);
             margin: auto;
             margin-top: 20px;
             padding: 20px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         }
 
         .card-title {
@@ -105,9 +113,9 @@ $user = mysqli_fetch_assoc($result);
         header nav ul li a:hover {
             color: #ccc;
         }
-
     </style>
 </head>
+
 <body>
     <header>
         <h1>Library Management System</h1>
@@ -135,15 +143,25 @@ $user = mysqli_fetch_assoc($result);
                 </div>
             </div>
             <div class="col-md-10">
-                <div class="card">
-                    <h5 class="card-title">User Information</h5>
-                    <p class="card-text"><strong>Name:</strong> <?php echo $user['name']; ?></p>
-                    <p class="card-text"><strong>Email:</strong> <?php echo $user['email']; ?></p>
-                </div>
+                <h2>Borrowed Books</h2>
+                <?php
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<div class='card'>";
+                        echo "<h5 class='card-title'>{$row['title']}</h5>";
+                        echo "<p class='card-text'><strong>Author:</strong> {$row['author']}</p>";
+                        echo "<p class='card-text'><strong>ISBN:</strong> {$row['isbn']}</p>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<p>No borrowed books found.</p>";
+                }
+                ?>
             </div>
         </div>
     </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>
