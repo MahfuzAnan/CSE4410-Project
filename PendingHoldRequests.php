@@ -12,9 +12,11 @@ $username = $_SESSION['username'];
 
 
 //Our SQL Query
-$sql_query1 = "SELECT I.Username, I.IssueID, I.ISBN, B.Title, B.Edition, I.IssueDate, I.ReturnDate
-FROM issue AS I, book AS B
-WHERE I.ISBN = B.ISBN AND I.NumExten = -1";
+$sql_query1 = "SELECT DISTINCT I.IssueID, I.Username, B.ISBN, B.Title, B.Edition, B.GenreName, B.ReleasedYear, BC.CopyID
+FROM issue AS I
+INNER JOIN book AS B ON I.ISBN = B.ISBN
+INNER JOIN bookcopy AS BC ON I.ISBN = BC.ISBN AND I.CopyID = BC.CopyID
+WHERE BC.IsHold = 1" ;
 
 //Run our sql query
 $result1 = mysqli_query ($link, $sql_query1)  or die(mysqli_error($link)); 
@@ -29,9 +31,9 @@ if($result1 == false)
 <html>
 <body>
 
-<form action="HandleExtensionResult.php" method="post">
+<form action="PendingHoldRequestsResult.php" method="post">
 
-<h1>Extension Requests</h1>
+<h1>Pending Future Hold Requests</h1>
 <table border="1" style="width:100%">
   <tr>
     <th>Select</th>
@@ -40,39 +42,40 @@ if($result1 == false)
     <th>ISBN</th>
     <th>Title</th>
     <th>Edition</th>
-    <th>Issue Date</th>
-    <th>Return Date</th>
+    <th>Genre Name</th>
+    <th>Released Year</th>
+    <th>Copy ID</th>
   </tr>
 
-  <?php while($row1 = mysqli_fetch_array($result1))
+  <?php while($row = mysqli_fetch_array($result1))
   {
-    $username = $row1['Username'];
-    $issueID = $row1['IssueID'];
-    $ISBN = $row1['ISBN'];
-    $title = $row1['Title'];
-    $edition = $row1['Edition'];
-    $issueDate = $row1['IssueDate'];
-    $returnDate = $row1['ReturnDate'];
+    $username = $row['Username'];
+    $issueID = $row['IssueID'];
+    $ISBN = $row['ISBN'];
+    $title = $row['Title'];
+    $edition = $row['Edition'];
+    $genreName = $row['GenreName'];
+    $releasedYear = $row['ReleasedYear'];
+    $copyID = $row['CopyID'];
   ?>
   
   <tr>
-    <td><input type="radio" name="ISBN" value="<?php echo $ISBN; ?>" required></td>
+    <td><input type="radio" name="selectedCopy" value="<?php echo $ISBN . '_' . $copyID; ?>" required></td>
     <td><?php echo $username; ?></td>
     <td><?php echo $issueID; ?></td>
     <td><?php echo $ISBN; ?></td>
     <td><?php echo $title; ?></td>
     <td><?php echo $edition; ?></td>
-    <td><?php echo $issueDate; ?></td>
-    <td><?php echo $returnDate; ?></td>
+    <td><?php echo $genreName; ?></td>
+    <td><?php echo $releasedYear; ?></td>
+    <td><?php echo $copyID; ?></td>
   </tr>
 <?php
 } // Ends the while loop for the query results
 ?>
 </table>
 
-<input type="submit" value="Approve" name="approve"/>
-
-<input type="submit" value="Deny" name="deny"/>
+<input type="submit" value="Dismiss Request" name="dismiss"/>
 
 </form>
 

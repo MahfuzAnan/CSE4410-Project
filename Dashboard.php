@@ -11,7 +11,7 @@ mysqli_select_db($link, $database) or die( "Unable to select database");
 $username = $_SESSION['username'];
 
 // Fetch borrowed books
-$sql_borrowed = "SELECT DISTINCT B.ISBN, B.Title, B.Edition, B.Publisher, B.ReleasedYear, B.GenreName
+$sql_borrowed = "SELECT DISTINCT B.ISBN, I.IssueID, B.Title, B.Edition, B.Publisher, B.ReleasedYear, B.GenreName, I.ExtenDate, I.ReturnDate
 FROM issue AS I INNER JOIN book AS B ON I.ISBN = B.ISBN WHERE I.Username = '$username'";
 $result_borrowed = mysqli_query($link, $sql_borrowed) or die(mysqli_error($link));
 
@@ -22,13 +22,10 @@ WHERE BC.ISBN = B.ISBN AND BC.FuRequester = '$username' AND IsHold = 1";
 $result_hold = mysqli_query($link, $sql_hold) or die(mysqli_error($link));
 
 // Fetch extended date requests
-$sql_extension = "SELECT DISTINCT B.ISBN, B.Title, B.Edition, B.Publisher, B.ReleasedYear, B.GenreName
+$sql_extension = "SELECT DISTINCT B.ISBN, I.IssueID, B.Title, B.Edition, B.Publisher, B.ReleasedYear, B.GenreName, I.ExtenDate, I.ReturnDate
 FROM book AS B
-WHERE B.ISBN IN (
-SELECT DISTINCT I.ISBN
-FROM issue AS I
-WHERE I.Username = '$username' AND I.NumExten = -1
-)";
+INNER JOIN issue AS I ON B.ISBN = I.ISBN
+WHERE I.Username = '$username' AND I.NumExten = -1";
 $result_extension = mysqli_query($link, $sql_extension) or die(mysqli_error($link));
 
 
@@ -43,30 +40,46 @@ $result_extension = mysqli_query($link, $sql_extension) or die(mysqli_error($lin
 <table border="1" style="width:100%">
   <tr>
     <th>ISBN</th>
+    <th>Issue ID</th>
     <th>Title of the book</th>
     <th>Edition</th>
     <th>Publisher</th>
     <th>Released Year</th>
     <th>Genre Name</th>
+    <th>Return Date</th>
   </tr>
 
   <?php while($row = mysqli_fetch_array($result_borrowed))
   { 
     $ISBN = $row['ISBN'];
+    $issueID = $row['IssueID'];
     $Title = $row['Title'];
     $Edition = $row['Edition'];
     $Publisher = $row['Publisher'];
     $ReleasedYear = $row['ReleasedYear'];
     $GenreName = $row['GenreName'];
+    $extenDate = $row['ExtenDate'];
+    $returnDate = $row['ReturnDate'];
   ?>
   
   <tr>
     <td><?php echo $ISBN; ?></td>
+    <td><?php echo $issueID; ?></td>
     <td><?php echo $Title; ?></td>
     <td><?php echo $Edition; ?></td>
     <td><?php echo $Publisher; ?></td>
     <td><?php echo $ReleasedYear; ?></td>
     <td><?php echo $GenreName; ?></td>
+    <td>
+      <?php
+        if ($extenDate > $returnDate) {
+          echo $extenDate;
+        } else {
+          echo $returnDate;
+        }
+      ?>
+    </td>
+
   </tr>
 <?php
 } // Ends the while loop for the borrowed books
@@ -80,6 +93,7 @@ $result_extension = mysqli_query($link, $sql_extension) or die(mysqli_error($lin
 <table border="1" style="width:100%">
   <tr>
     <th>ISBN</th>
+    <th>Issue ID</th>
     <th>Title of the book</th>
     <th>Edition</th>
     <th>Publisher</th>
@@ -99,6 +113,7 @@ $result_extension = mysqli_query($link, $sql_extension) or die(mysqli_error($lin
   
   <tr>
     <td><?php echo $ISBN; ?></td>
+    <td>Pending...</td>
     <td><?php echo $Title; ?></td>
     <td><?php echo $Edition; ?></td>
     <td><?php echo $Publisher; ?></td>
@@ -106,7 +121,7 @@ $result_extension = mysqli_query($link, $sql_extension) or die(mysqli_error($lin
     <td><?php echo $GenreName; ?></td>
   </tr>
 <?php
-} // Ends the while loop for the borrowed books
+} // Ends the while loop for future hold books
 ?>
 </table>
 
@@ -117,33 +132,50 @@ $result_extension = mysqli_query($link, $sql_extension) or die(mysqli_error($lin
 <table border="1" style="width:100%">
   <tr>
     <th>ISBN</th>
+    <th>Issue ID</th>
     <th>Title of the book</th>
     <th>Edition</th>
     <th>Publisher</th>
     <th>Released Year</th>
     <th>Genre Name</th>
+    <th>Status</th>
   </tr>
 
   <?php while($row = mysqli_fetch_array($result_extension))
   { 
-    $ISBN = $row['ISBN'];
+    $ISBN = $row['ISBN'];    
+    $issueID = $row['IssueID'];
     $Title = $row['Title'];
     $Edition = $row['Edition'];
     $Publisher = $row['Publisher'];
     $ReleasedYear = $row['ReleasedYear'];
     $GenreName = $row['GenreName'];
+    $extenDate = $row['ExtenDate'];
+    $returnDate = $row['ReturnDate'];
   ?>
   
   <tr>
     <td><?php echo $ISBN; ?></td>
+    <td><?php echo $issueID; ?></td>
     <td><?php echo $Title; ?></td>
     <td><?php echo $Edition; ?></td>
     <td><?php echo $Publisher; ?></td>
     <td><?php echo $ReleasedYear; ?></td>
     <td><?php echo $GenreName; ?></td>
+    <td>
+      <?php
+        if ($extenDate > $returnDate) {
+          echo "Approved";
+        } elseif ($extenDate == $returnDate) {
+          echo "Rejected";
+        } else {
+          echo "Pending...";
+        }
+    ?></td>
+
   </tr>
 <?php
-} // Ends the while loop for the borrowed books
+} // Ends the while loop for the extension requested books
 ?>
 </table>
 

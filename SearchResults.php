@@ -41,7 +41,7 @@ $result2 = mysqli_query ($link, $sql_query2)  or die(mysqli_error($link));
 
 <table border="1" style="width:100%">
   <tr>
-	<th>Select</th>
+	  <th>Select</th>
     <th>ISBN</th>
     <th>Title of the book</th>
     <th>Edition</th>
