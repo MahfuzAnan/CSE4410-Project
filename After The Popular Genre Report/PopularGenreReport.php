@@ -44,6 +44,25 @@ foreach ($months as $monthNum => $monthName) {
     if (mysqli_num_rows($result) > 0) {
         ?>
         <html>
+            <head>
+  <style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  h1, h2 {
+    text-align: center;
+  }
+  </style>
+  </head>
         <body>
             <h1><?php echo $monthName; ?> Popular Genre Report</h1>
             <table border="1" style="width:100%">
