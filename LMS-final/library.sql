@@ -1,15 +1,5 @@
--- phpMyAdmin SQL Dump
--- version 4.1.14
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Apr 21, 2015 at 10:29 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -65,7 +55,20 @@ INSERT INTO `author` (`ISBN`, `Author`) VALUES
 ('1449600069', 'Linda Null'),
 ('1452257876', 'A. Michael Huberman'),
 ('1452257876', 'Matthew B. Miles'),
-('1590597699', 'Clare Churcher');
+('1590597699', 'Clare Churcher'),
+('9990000011', 'George R. R. Martin'),
+('9990000021', 'J. K. Rowling'),
+('9990000031', 'J.R.R. Tolkien'),
+('9990000041', 'Ernest Hemingway'),
+('9990000051', 'Jane Austen'),
+('9990000061', 'Rabindranath Tagore'),
+('9990000062', 'Rabindranath Tagore'),
+('9990000071', 'Kazi Nazrul Islam'),
+('9990000081', 'Humayun Ahmed'),
+('9990000082', 'Humayun Ahmed'),
+('9990000083', 'Humayun Ahmed'),
+('9990000091', 'Samaresh Majumder'),
+('9990000101', 'Satyajit Ray');
 
 -- --------------------------------------------------------
 
@@ -107,8 +110,20 @@ INSERT INTO `book` (`ISBN`, `Title`, `Cost`, `IsReserved`, `Edition`, `Published
 ('1429261781', 'Psychology', '152.54', 0, 10, '', 'Worth Publishers', '2011', 'Psychology'),
 ('1449600069', 'The Essentials of Computer Organization and Architecture', '215.95', 0, 3, '', 'Jones & Bartlett Learning', '2010', 'Computer Architecture'),
 ('1452257876', 'Qualitative Data Analysis: A Methods Sourcebook', '72.42', 0, 3, 'US', 'SAGE Publications, Inc', '2013', 'Data Science'),
-('1590597699', 'Beginning Database Design: From Novice to Professional ', '25.82', 0, 1, 'US', 'Apress', '2007', 'Data Science');
-
+('1590597699', 'Beginning Database Design: From Novice to Professional ', '25.82', 0, 1, 'US', 'Apress', '2007', 'Data Science'),
+('9990000011', 'A Game of Thrones', 99.99, 0, 1, 'New York', 'Bantam Spectra', 1996, 'Fantasy'),
+('9990000021', 'Harry Potter', 149.99, 0, 8, 'London', 'Rowling Publications', 1990, 'Fantasy'),
+('9990000031', 'The Lord of the Rings', 39.99, 1, 3, 'London', 'Houghton', 1954, 'Fantasy'),
+('9990000041', 'The Old Man and the Sea', 9.99, 0, 1, 'New York', 'Scribner', 1952, 'Fiction'),
+('9990000051', 'Pride and Prejudice', 7.99, 1, 1, 'London', 'Penguin Classics', 1813, 'Romance'),
+('9990000061', 'Noukadubi', 14.99, 0, 1, 'Kolkata', 'Shomoy', 1910, 'Fiction'),
+('9990000062', 'Gitanjali', 4.99, 0, 1, 'Kolkata', 'Shomoy', 1880, 'Poetry'),
+('9990000071', 'Sanchita', 18.99, 0, 1, 'Dhaka', 'Prothoma', 1960, 'Poetry'),
+('9990000081', 'Aj Himur Biye', 9.99, 1, 1, 'Dhaka', 'Prothoma', 2009, 'Romance'),
+('9990000082', 'Shuvro', 49.99, 0, 1, 'Dhaka', 'Prothoma', 2005, 'Fiction'),
+('9990000083', 'Opekkha', 29.99, 0, 1, 'Dhaka', 'Prothoma', 2000, 'Fantasy'),
+('9990000091', 'Kalbela', 19.99, 0, 1, 'Kolkata', 'Rokomari', 1985, 'Romance'),
+('9990000101', 'Feluda', 99.99, 1, 9, 'Kolkata', 'Onnoprokash', 1922, 'Mystery');
 
 -- --------------------------------------------------------
 
@@ -130,82 +145,9 @@ CREATE TABLE IF NOT EXISTS `bookcopy` (
 -- Dumping data for table `bookcopy`
 --
 
-INSERT INTO `bookcopy` (`ISBN`, `CopyID`, `IsBorrowed`, `IsHold`, `IsDamaged`, `FuRequester`) VALUES
-('0123704901', 1, 1, 0, 0, 'ywu'),
-('0123704901', 2, 0, 0, 1, NULL),
-('0123704901', 3, 0, 1, 0, 'hsun'),
-('0123944244', 1, 1, 0, 0, NULL),
-('0123944244', 2, 0, 1, 0, NULL),
-('0124077269', 1, 1, 0, 0, NULL),
-('0124077269', 2, 0, 1, 0, NULL),
-('0124077269', 3, 0, 1, 0, NULL),
-('0124077269', 4, 0, 0, 1, NULL),
-('0124077269', 5, 0, 0, 0, NULL),
-('0124077269', 6, 0, 0, 0, NULL),
-('0124077269', 7, 0, 0, 1, NULL),
-('0205973361', 1, 1, 0, 0, NULL),
-('0205973361', 2, 0, 1, 0, NULL),
-('0205973361', 3, 0, 0, 0, NULL),
-('0321696867', 1, 0, 0, 0, NULL),
-('0321696867', 2, 0, 0, 0, NULL),
-('0321696867', 3, 0, 0, 0, NULL),
-('0321696867', 4, 0, 0, 0, NULL),
-('0321740904', 1, 0, 0, 1, NULL),
-('0321740904', 2, 0, 0, 0, NULL),
-('0321740904', 3, 0, 0, 0, NULL),
-('0321740904', 4, 0, 0, 0, NULL),
-('0321740904', 5, 0, 0, 1, NULL),
-('0321740904', 6, 0, 0, 0, NULL),
-('0321740904', 7, 0, 0, 0, NULL),
-('0321884078', 1, 1, 0, 0, 'ediao'),
-('0470879521', 1, 0, 0, 1, NULL),
-('0470879521', 2, 0, 1, 0, NULL),
-('0470879521', 3, 0, 0, 0, NULL),
-('0470879521', 4, 0, 0, 0, NULL),
-('0470879521', 5, 0, 0, 0, NULL),
-('0470879521', 6, 0, 0, 0, NULL),
-('0470879521', 7, 0, 0, 0, NULL),
-('0596802358', 1, 0, 1, 0, NULL),
-('0596802358', 2, 0, 0, 0, NULL),
-('099040207X', 1, 1, 0, 0, 'apiper'),
-('099040207X', 2, 0, 1, 0, 'nbatts'),
-('099040207X', 3, 0, 0, 1, NULL),
-('1285057090', 1, 0, 0, 0, NULL),
-('1429237198', 1, 0, 0, 1, NULL),
-('1429237198', 2, 0, 0, 0, NULL),
-('1429237198', 3, 0, 0, 0, NULL),
-('1429261781', 1, 1, 0, 0, NULL),
-('1429261781', 2, 0, 0, 0, NULL),
-('1449600069', 1, 0, 1, 0, NULL),
-('1449600069', 2, 0, 0, 0, NULL),
-('1449600069', 3, 0, 0, 1, NULL),
-('1452257876', 1, 1, 0, 0, NULL),
-('1452257876', 2, 0, 0, 1, NULL),
-('1452257876', 3, 0, 0, 0, NULL),
-('1452257876', 4, 0, 0, 0, NULL),
-('1590597699', 1, 1, 0, 0, NULL);
+-- INSERT INTO `bookcopy` (`ISBN`, `CopyID`, `IsBorrowed`, `IsHold`, `IsDamaged`, `FuRequester`) VALUES
 
--- --------------------------------------------------------
 
---
--- Table structure for table `floor`
---
-
-CREATE TABLE IF NOT EXISTS `floor` (
-  `FloorID` int(11) NOT NULL,
-  `NumAssistant` int(11) NOT NULL,
-  `NumCopier` int(11) NOT NULL,
-  PRIMARY KEY (`FloorID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `floor`
---
-
-INSERT INTO `floor` (`FloorID`, `NumAssistant`, `NumCopier`) VALUES
-(1, 2, 2),
-(2, 3, 3),
-(3, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -232,189 +174,36 @@ CREATE TABLE IF NOT EXISTS `issue` (
 -- Dumping data for table `issue`
 --
 
-INSERT INTO `issue` (`Username`, `ISBN`, `CopyID`, `IssueID`, `ExtenDate`, `IssueDate`, `ReturnDate`, `NumExten`) VALUES
-('aclark', '0124077269', 1, '115', '2023-04-13', '2023-03-31', '2023-04-27', 1),
-('ahart', '0123704901', 1, '45', '2023-01-03', '2023-01-03', '2023-01-17', 0),
-('ahart', '0124077269', 7, '82', '2023-02-05', '2023-02-05', '2023-02-19', 0),
-('apiper', '0124077269', 2, '143', NULL, '2023-04-18', '2023-05-02', 0),
-('apiper', '0321696867', 1, '64', '2023-01-12', '2023-01-12', '2023-01-26', 0),
-('bturner', '0124077269', 3, '169', NULL, '2023-04-20', '2023-05-04', 0),
-('bturner', '0321884078', 1, '119', '2023-04-07', '2023-04-07', '2023-04-21', 0),
-('cbenson', '1452257876', 1, '116', '2023-04-15', '2023-04-11', '2023-04-29', 1),
-('ediao', '0124077269', 1, '74', '2023-02-10', '2023-02-10', '2023-02-24', 0),
-('ediao', '0321696867', 1, '89', '2023-02-10', '2023-02-10', '2023-02-24', 0),
-('ediao', '099040207X', 2, '148', NULL, '2023-04-16', '2023-04-30', 0),
-('gkimberly', '0123704901', 1, '85', '2023-03-03', '2023-03-03', '2023-03-17', 0),
-('gkimberly', '0596802358', 1, '177', NULL, '2023-04-20', '2023-05-04', 0),
-('gstarr', '0124077269', 2, '73', '2023-01-05', '2023-01-05', '2023-01-19', 0),
-('hclifton', '0205973361', 2, '166', NULL, '2023-04-21', '2023-05-05', 0),
-('hclifton', '0470879521', 2, '120', NULL, '2023-04-17', '2023-05-01', 0),
-('hclifton', '099040207X', 3, '52', '2023-01-11', '2023-01-11', '2023-01-25', 0),
-('hsun', '0123704901', 3, '47', '2023-01-05', '2023-01-05', '2023-01-19', 0),
-('hsun', '1449600069', 1, '157', NULL, '2023-04-20', '2023-05-04', 0),
-('hsun', '1590597699', 1, '72', '2023-02-03', '2023-02-03', '2023-02-17', 0),
-('kburns', '0123944244', 1, '61', '2023-01-25', '2023-01-25', '2023-02-09', 0),
-('kburns', '0321696867', 2, '54', '2023-01-19', '2023-01-16', '2023-02-03', 1),
-('kburns', '099040207X', 1, '117', '2023-04-15', '2023-04-15', '2023-04-29', 0),
-('kburns', '1429261781', 1, '111', '2023-04-19', '2023-04-14', '2023-05-03', 1),
-('kburns', '1429261781', 2, '88', '2023-03-15', '2023-03-15', '2023-03-29', 0),
-('lnarang', '0123944244', 1, '79', '2023-02-11', '2023-02-04', '2023-02-25', 1),
-('lnarang', '099040207X', 2, '53', '2023-01-12', '2023-01-12', '2023-01-26', 0),
-('lnarang', '1429261781', 1, '75', '2023-03-05', '2023-02-05', '2023-02-26', 2),
-('lnoel', '0123704901', 2, '44', '2023-01-01', '2023-01-01', '2023-01-05', 0),
-('lnoel', '1590597699', 1, '114', '2023-04-21', '2023-04-14', '2023-05-05', 1),
-('nbatts', '0123704901', 2, '65', '2023-01-01', '2023-01-01', '2023-01-15', 0),
-('nbatts', '0123944244', 2, '94', '2023-03-30', '2023-03-21', '2023-04-14', 1),
-('sgarner', '0124077269', 6, '81', '2023-02-12', '2023-02-12', '2023-02-26', 0),
-('sgarner', '0205973361', 1, '112', '2023-04-13', '2023-04-01', '2023-04-15', 1),
-('sgarner', '0205973361', 2, '59', '2023-01-18', '2023-01-18', '2023-02-01', 0),
-('ssong', '0123944244', 2, '184', NULL, '2023-04-21', '2023-05-05', 0),
-('ssong', '099040207X', 2, '83', '2023-02-11', '2023-02-11', '2023-02-25', 0),
-('thwang', '0205973361', 2, '90', '2023-03-10', '2023-03-10', '2023-03-24', 0),
-('thwang', '0470879521', 4, '78', '2023-02-03', '2023-02-03', '2023-02-17', 0),
-('ywu', '0123944244', 1, '118', '2023-04-12', '2023-04-12', '2023-04-26', 0);
+-- INSERT INTO `issue` (`Username`, `ISBN`, `CopyID`, `IssueID`, `ExtenDate`, `IssueDate`, `ReturnDate`, `NumExten`) VALUES
+
+
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keyword`
+-- Table structure for table `user_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `keyword` (
-  `SName` varchar(30) NOT NULL,
-  `Keyword` varchar(25) NOT NULL,
-  PRIMARY KEY (`SName`,`Keyword`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `keyword`
---
-
-INSERT INTO `keyword` (`SName`, `Keyword`) VALUES
-('Calculus', 'Convergent'),
-('Calculus', 'Derivative'),
-('Calculus', 'Differential Equation'),
-('Calculus', 'Integral'),
-('Computer Architecture', 'Assembly'),
-('Computer Architecture', 'Cache'),
-('Computer Architecture', 'Instruction Set'),
-('Computer Architecture', 'Memory'),
-('Data Science', 'Cloud Computing'),
-('Data Science', 'Computer Vision'),
-('Data Science', 'Database'),
-('Data Science', 'Statistics'),
-('Physics', 'Electron'),
-('Physics', 'Photoelectric Effect'),
-('Physics', 'Quantum Physics'),
-('Physics', 'Relativity'),
-('Psychology', 'Cognitive'),
-('Psychology', 'Neuropsychology');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shelf`
---
-
-CREATE TABLE IF NOT EXISTS `shelf` (
-  `ShelfID` int(11) NOT NULL,
-  `FloorID` int(11) NOT NULL,
-  `AisleID` int(11) NOT NULL,
-  PRIMARY KEY (`ShelfID`),
-  KEY `FloorID` (`FloorID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `shelf`
---
-
-INSERT INTO `shelf` (`ShelfID`, `FloorID`, `AisleID`) VALUES
-(111, 1, 11),
-(112, 1, 11),
-(121, 1, 12),
-(122, 1, 12),
-(131, 1, 13),
-(132, 1, 13),
-(211, 2, 21),
-(212, 2, 21),
-(221, 2, 22),
-(222, 2, 22),
-(231, 2, 23),
-(232, 2, 23),
-(311, 3, 31),
-(312, 3, 31),
-(321, 3, 32),
-(322, 3, 32),
-(331, 3, 33),
-(332, 3, 33);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `staff`
---
-
-CREATE TABLE IF NOT EXISTS `staff` (
-  `Username` varchar(15) NOT NULL,
-  PRIMARY KEY (`Username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `staff`
---
-
-INSERT INTO `staff` (`Username`) VALUES
-('amoore'),
-('mross');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `student_faculty`
---
-
-CREATE TABLE IF NOT EXISTS `student_faculty` (
+CREATE TABLE IF NOT EXISTS `user_detail` (
   `Username` varchar(15) NOT NULL,
   `Name` varchar(30) NOT NULL,
   `DOB` date DEFAULT NULL,
   `Email` varchar(30) NOT NULL,
-  `IsDebarred` tinyint(1) NOT NULL DEFAULT '0',
   `Gender` char(1) NOT NULL,
-  `Address` varchar(50) DEFAULT NULL,
-  `IsFaculty` tinyint(1) NOT NULL,
-  `Penalty` decimal(5,2) NOT NULL DEFAULT '0.00',
-  `Dept` varchar(50) DEFAULT NULL,
+  `Nationality` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `student_faculty`
+-- Dumping data for table `user_detail`
 --
 
-INSERT INTO `student_faculty` (`Username`, `Name`, `DOB`, `Email`, `IsDebarred`, `Gender`, `Address`, `IsFaculty`, `Penalty`, `Dept`) VALUES
-('aclark', 'Anne Clark', '1975-04-19', 'aclark@gatech.edu', 0, 'F', '801 Atlantic Dr NW, Atlanta, GA', 1, '0.00', 'College of Computing'),
-('ahart', 'Annis Hart', '1987-06-12', 'ahart@gatech.edu', 0, 'F', '209 Oak Street, Dacula, GA', 0, '5.00', NULL),
-('amoore', 'Alice Moore', NULL, 'amoore@gatech.edu', 0, 'F', '435 Williams St, Duluth, GA', 0, '0.00', NULL),
-('apiper', 'Agustina Piper', '1995-07-09', 'apiper@gatech.edu', 0, 'F', NULL, 0, '0.00', NULL),
-('bturner', 'Buck Turner', '1970-11-12', 'bturner@gatech.edu', 0, 'M', '777 Atlantic Drive, Atlanta, GA', 1, '0.00', 'School of Electrical & Computer Engineering'),
-('cbenson', 'Carol Benson', '1975-03-21', 'cbenson@gatech.edu', 0, 'M', '801 Atlantic Dr NW, Atlanta, GA', 1, '0.00', 'College of Computing'),
-('ediao', 'Enmao Diao', NULL, 'ediao@gatech.edu', 0, 'M', NULL, 0, '0.00', NULL),
-('gkimberly', 'Geraldo Kimberly', '1987-09-03', 'gkimberly@gatech.edu', 0, 'M', NULL, 0, '0.00', NULL),
-('gmat', 'Gene Mat', '1989-03-25', 'gmat@gatech.edu', 1, 'M', '250 Union Street, Stone Mountain, GA', 0, '110.00', NULL),
-('gstarr', 'Gordon Starr', '1989-03-04', 'gstarr@gatech.edu', 0, 'M', NULL, 0, '0.00', NULL),
-('hclifton', 'Harriet Clifton', '1965-09-08', 'hclifton@gatech.edu', 0, 'F', '755 Ferst Drive, NW, Atlanta, GA', 1, '12.00', 'School of Industrial & Systems Engineering'),
-('hsun', 'Haitian Sun', NULL, 'hsun@gatech.edu', 0, 'M', NULL, 0, '0.00', NULL),
-('kburns', 'Katey Burns', '1984-02-28', 'kburns@gatech.edu', 0, 'F', '15 Water Street, Jacksonville Beach, FL', 0, '40.00', NULL),
-('kwalls', 'Kathy Walls', '1986-06-12', 'kwalls@gatech.edu', 1, 'F', '48 Bank Street Roswell, Atlanta, GA ', 0, '140.00', NULL),
-('lnarang', 'Lina Narang', '1985-08-15', 'lnarang@gatech.edu', 0, 'F', '950 Marietta St NW, Atlanta, GA ', 0, '30.00', NULL),
-('lnoel', 'Lazare Noel', '1988-12-10', 'lnoel@gatech.edu', 0, 'M', NULL, 0, '5.10', NULL),
-('mross', 'Michael Ross', '1991-10-01', 'mross@gatech.edu', 0, 'M', '282 Sycamore Drive, Hephzibah, GA', 0, '31.20', NULL),
-('nbatts', 'Norman Batts', '1992-02-09', 'nbatts@gatech.edu', 0, 'M', NULL, 0, '0.00', NULL),
-('sgarner', 'Sheard Garner', '1969-05-30', 'sgarner@gatech.edu', 0, 'M', '777 Atlantic Drive, Atlanta, GA', 1, '35.50', 'School of Electrical & Computer Engineering'),
-('ssong', 'Seok Song', '1992-07-05', 'ssong@gatech.edu', 0, 'M', '470 16th St, Atlanta, GA', 0, '0.00', NULL),
-('thwang', 'Tiffany Hwang', '1989-08-01', 'thwang@gatech.edu', 0, 'F', '942 Union Street, Stone Mountain, GA', 0, '0.00', NULL),
-('ywu', 'Yuxiao Wu', '1993-07-01', 'ywu@gatech.edu', 0, 'F', '935 Marietta St NW, Atlanta, GA', 0, '0.00', NULL),
-('zhui', 'Hui Zan', '1995-05-03', 'zhui@gatech.edu', 1, 'M', '350 Ferst Drive, NW, Atlanta, GA', 0, '120.00', NULL);
+INSERT INTO `user_detail` (`Username`, `Name`, `DOB`, `Email`, `Gender`, `Nationality`) VALUES
+('sah75', 'Sakib Al Hasan', '1980-05-15', 'sah75@google.com', 'M', 'Bangladesh'),
+('msdhoni', 'Mahendra Singh Dhoni', '1985-08-22', 'msdhoni@google.com', 'M', 'India'),
+('cr7', 'Cristiano Ronaldo', '1988-03-10', 'cr7@google.com', 'M', 'Portugal'),
+('lm10', 'Lionel Messi','1990-03-10', 'lm10@google.com', 'M', 'Argentina'),
+('rafa', 'Rafael Nadal','1995-03-10', 'rafa@google.com', 'M', 'Spain');
 
 -- --------------------------------------------------------
 
@@ -436,7 +225,12 @@ INSERT INTO `genre` (`GenreName`) VALUES
 ('Computer Architecture'),
 ('Data Science'),
 ('Physics'),
-('Psychology');
+('Psychology'),
+('Fiction'),
+('Mystery'),
+('Romance'),
+('Poetry'),
+('Fantasy');
 
 -- --------------------------------------------------------
 
@@ -456,28 +250,33 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`Username`, `Password`) VALUES
 ('aclark', 'aclark123'),
-('ahart', 'ahart123'),
-('amoore', 'amoore123'),
-('apiper', 'apiper123'),
-('bturner', 'bturner123'),
-('cbenson', 'cbenson123'),
-('ediao', 'ediao123'),
-('gkimberly', 'gkimberly123'),
-('gmat', 'gmat123'),
-('gstarr', 'gstarr123'),
-('hclifton', 'hclifton123'),
-('hsun', 'hsun123'),
-('kburns', 'kburns123'),
-('kwalls', 'kwalls123'),
-('lnarang', 'lnarang123'),
-('lnoel', 'lnoel123'),
 ('mross', 'mross123'),
-('nbatts', 'nbatts123'),
-('sgarner', 'sgarner123'),
-('ssong', 'ssong123'),
-('thwang', 'thwang123'),
-('ywu', 'ywu123'),
-('zhui', 'zhui123');
+('sah75', '123'),
+('msdhoni', '123'),
+('cr7', '123'),
+('lm10', '123'),
+('rafa', '123'),
+('admin', 'admin');
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff`
+--
+
+CREATE TABLE IF NOT EXISTS `staff` (
+  `Username` varchar(15) NOT NULL,
+  PRIMARY KEY (`Username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`Username`) VALUES
+('admin');
+
 
 --
 -- Constraints for dumped tables
@@ -508,17 +307,6 @@ ALTER TABLE `issue`
   ADD CONSTRAINT `issue_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `issue_ibfk_2` FOREIGN KEY (`ISBN`, `CopyID`) REFERENCES `bookcopy` (`ISBN`, `CopyID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Constraints for table `keyword`
---
-ALTER TABLE `keyword`
-  ADD CONSTRAINT `keyword_ibfk_1` FOREIGN KEY (`SName`) REFERENCES `genre` (`GenreName`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `shelf`
---
-ALTER TABLE `shelf`
-  ADD CONSTRAINT `shelf_ibfk_1` FOREIGN KEY (`FloorID`) REFERENCES `floor` (`FloorID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `staff`
@@ -527,16 +315,56 @@ ALTER TABLE `staff`
   ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `student_faculty`
+-- Constraints for table `user_detail`
 --
-ALTER TABLE `student_faculty`
-  ADD CONSTRAINT `student_faculty_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `user_detail`
+  ADD CONSTRAINT `user_detail` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Constraints for table `subject`
---
--- ALTER TABLE `subject`
---   ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`FloorID`) REFERENCES `floor` (`FloorID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
+DELIMITER $$
+CREATE FUNCTION generateIssueID()
+RETURNS VARCHAR(50) 
+BEGIN
+    DECLARE currentYear CHAR(4);
+    DECLARE currentMonth CHAR(2);
+    DECLARE currentDate CHAR(2);
+    DECLARE currentHour CHAR(2);
+    DECLARE currentMinute CHAR(2);
+    DECLARE currentSecond CHAR(2);
+    DECLARE issueID VARCHAR(50);
+    
+    SET currentYear = YEAR(CURRENT_TIMESTAMP);
+    SET currentMonth = LPAD(MONTH(CURRENT_TIMESTAMP), 2, '0');
+    SET currentDate = LPAD(DAY(CURRENT_TIMESTAMP), 2, '0');
+    SET currentHour = LPAD(HOUR(CURRENT_TIMESTAMP), 2, '0');
+    SET currentMinute = LPAD(MINUTE(CURRENT_TIMESTAMP), 2, '0');
+    SET currentSecond = LPAD(SECOND(CURRENT_TIMESTAMP), 2, '0');
+    
+    SET issueID = CONCAT(currentYear, currentMonth, currentDate, '_', NEW.ISBN, '_', currentHour, currentMinute, currentSecond);
+    SET NEW.IssueID = issueID;
+    
+    RETURN issueID;
+END$$
+DELIMITER ;
+
+
+CREATE TRIGGER before_insert_issue
+BEFORE INSERT ON issue
+FOR EACH ROW
+BEGIN
+        SET NEW.IssueID = generateIssueID(); 
+END;
+
+
+
+
+
+
+
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

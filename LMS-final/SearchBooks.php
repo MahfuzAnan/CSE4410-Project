@@ -3,14 +3,15 @@
 <style>
         body {
             font-family: Arial, sans-serif;
+            background-image: url('lms-2.jpg');
             background-color: #f2f2f2;
             margin: 0;
             padding: 20px;
-        }
+        } 
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #fff;
         }
 
         form {
@@ -20,6 +21,7 @@
         table {
             margin: 0 auto;
             border-collapse: collapse;
+            color: #fff;
         }
 
         td {
@@ -32,6 +34,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             width: 200px;
+            
         }
 
         input[type="submit"] {
@@ -71,18 +74,18 @@ $username = $_SESSION['username'];
 <table>
 <tr>
     <td>ISBN</td>
-    <td><input type="text" name="isbn"/></td>
+    <td><input type="text" autocomplete="on" pattern="[0-9Xx]+" name="isbn"/></td>
 </tr>
 
 <tr>
     <td>Title</td>
-    <td><input type="text" name="title"/></td>
+    <td><input type="text" autocomplete="off" name="title"/></td>
 </tr>
 
 
 <tr>
     <td>Author</td>
-    <td><input type="text" name="author"/></td>
+    <td><input type="text" autocomplete="off" name="author"/></td>
 </tr>
 
 </table>

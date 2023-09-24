@@ -86,7 +86,7 @@ $username = $_SESSION['username'];
 
 <tr>
     <td>Enter your issue ID</td>
-    <td><input type="text" name="issueid" required/></td>
+    <td><input type="text" name="issueid" autocomplete= "off" required/></td>
 </tr>
 </table>
 

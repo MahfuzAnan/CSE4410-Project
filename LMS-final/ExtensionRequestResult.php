@@ -29,7 +29,7 @@ else
     // Calculate the new ExtenDate and update the issue table
     $returnDate = $row1['ReturnDate'];
     $newExtenDate = date('Y-m-d', strtotime($returnDate . ' + 7 days'));
-    $sql_update1 = "UPDATE issue SET ExtenDate = '$newExtenDate', NumExten = -1 WHERE IssueID = '$issueid'";
+    $sql_update1 = "UPDATE issue SET NumExten = -1 WHERE IssueID = '$issueid'";
     mysqli_query($link, $sql_update1) or die(mysqli_error($link));
 
     echo "Extension Request Successful";
@@ -85,8 +85,9 @@ else
             cursor: pointer;
             display: block;
             margin: 10px auto;
-            width: 80px;
+            width: 10%;
             text-align: center;
+
         }
 
         input[type="submit"]:hover {
@@ -122,6 +123,9 @@ else
 </head> 
 <body>
 
+<form action="Dashboard.php" method="post">
+<input type="submit" value="User Dashboard"/>
+</form>
 
 <form action="ExtensionRequest.php" method="post">
 <input type="submit" value="Back"/>

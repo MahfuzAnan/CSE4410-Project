@@ -18,6 +18,7 @@ unset($_SESSION['copyid']);
 <style>
         body {
             font-family: Arial, sans-serif;
+            background-image: url('lms-2.jpg');
             background-color: #f2f2f2;
             margin: 0;
             padding: 20px;
@@ -25,7 +26,7 @@ unset($_SESSION['copyid']);
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #fff;
         }
 
         form {
@@ -51,7 +52,7 @@ unset($_SESSION['copyid']);
     </style>
 </head>
 <body>
-<h1>User Summary</h1>
+<h1>Welcome <?php echo $username ?>!</h1>
 
 <form action="SearchBooks.php" method="post">
 <input type="submit" value="Search Books"/>

@@ -97,6 +97,8 @@ $result3 = mysqli_query($link, $sql_query3) or die(mysqli_error($link));
             margin: 10px auto;
             width: 80px;
             text-align: center;
+
+            width: 10%;
         }
 
         input[type="submit"]:hover {
@@ -114,6 +116,10 @@ $result3 = mysqli_query($link, $sql_query3) or die(mysqli_error($link));
 
 <form action="SearchBooks.php" method="post">
 <input type="submit" value="Back"/>
+</form>
+
+<form action="Dashboard.php" method="post">
+<input type="submit" value="User Dashboard"/>
 </form>
 
 <form action="Login.php" method="post">

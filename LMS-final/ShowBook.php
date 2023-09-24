@@ -56,6 +56,7 @@ $MaxCopyID = $row2['maxcopyID'];
 <style>
         body {
             font-family: Arial, sans-serif;
+            background-image: url('lms-2.jpg');
             background-color: #f2f2f2;
             margin: 0;
             padding: 20px;
@@ -63,7 +64,7 @@ $MaxCopyID = $row2['maxcopyID'];
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #fff;
         }
 
         form {
@@ -103,6 +104,20 @@ $MaxCopyID = $row2['maxcopyID'];
         input[type="submit"]:hover {
             background-color: #333;
         }
+
+        input[type="submit"]:disabled {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: not-allowed;
+            display: block;
+            margin: 10px auto;
+            width: 160px;
+            text-align: center;
+            opacity: 0.6; /* Reduced opacity for disabled button */
+        }
+
         .container {
             max-width: 400px;
             margin: 0 auto;

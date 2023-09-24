@@ -4,6 +4,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-image: url('lms-2.jpg');
             background-color: #f2f2f2;
             margin: 0;
             padding: 20px;
@@ -11,7 +12,7 @@
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #fff;
         }
 
         form {
@@ -50,19 +51,19 @@
 </head>
 
 <body>
-<h1>Admin Summary</h1>
+<h1>Welcome Admin!</h1>
 
-<form action="PopularSubjectReport.php" method="post">
+<form action="PopularGenreReport.php" method="post">
 <input type="submit" value="Popular Genre Report"/>
 </form>
 
-<form action="FrequentUsersReport.php" method="post">
+<!-- <form action="FrequentUsersReport.php" method="post">
 <input type="submit" value="Frequently Sought Books Report"/>
-</form>
+</form> -->
 
-<form action="PopularBooksReport.php" method="post">
+<!-- <form action="PopularBooksReport.php" method="post">
 <input type="submit" value="Popular Books Requested for Future Hold"/>
-</form>
+</form> -->
 
 <!-- <form action="DamagedBooksReport.php" method="post">
 <input type="submit" value="Damaged Books Report"/>
@@ -80,11 +81,15 @@
 <input type="submit" value="Handle Extension Requests"/>
 </form>
 
+<form action="CheckReturnDate.php" method="post">
+<input type="submit" value="Check Return Dates"/>
+</form>
+
 <form action="AdminAddBook.php" method="post">
 <input type="submit" value="Add a Book to the Library"/>
 </form>
 
-<form action="RemoveBook.php" method="post">
+<form action="AdminRemoveBook.php" method="post">
 <input type="submit" value="Remove a Book from the Library"/>
 </form>
 

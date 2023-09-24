@@ -47,6 +47,14 @@ include 'dbinfo.php';
             width: 200px;
         }
 
+        input[type="password"],
+        select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+        }
+
         input[type="submit"] {
             padding: 8px 15px;
             background-color: #4CAF50;
@@ -63,6 +71,7 @@ include 'dbinfo.php';
         input[type="submit"]:hover {
             background-color: #333;
         }
+
         .container {
             max-width: 400px;
             margin: 0 auto;
@@ -72,7 +81,7 @@ include 'dbinfo.php';
             border-radius: 5px;
             margin-top: 100px;
         }
-
+        
         .container table {
             width: 100%;
         }
@@ -102,13 +111,20 @@ include 'dbinfo.php';
         .container input[type="submit"]:hover {
             background-color: #333;
         }
+
+        .error-message {
+            text-align: center;
+            color: red;
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
 <h1>Library Help</h1>   
+
 <div class="container">
 <h2>Login</h2>
-
 <?php
 //always start the session before anything else!!!!!! 
 session_start(); 
@@ -171,10 +187,11 @@ mysqli_select_db($link, $database) or die( "Unable to select database");
 				header('Location: UserSummary.php');
 			   
 			}else{ 
-			$err = 'Incorrect username or password' ; 
+			$err = 'Try Again - Incorrect username or password' ; 
 			} 
 			//then just above your login form or where ever you want the error to be displayed you just put in 
-			echo "$err";
+            echo '<div class="error-message">' . $err . '</div>';
+
     } 
 	
 ?>	
@@ -183,11 +200,11 @@ mysqli_select_db($link, $database) or die( "Unable to select database");
 <table>
 <tr>
     <td>Username</td>
-    <td><input type="text" name="username" required/></td>
+    <td><input type="text" autocomplete="off" name="username" required/></td>
 </tr>
 <tr>
     <td>Password</td>
-    <td><input type="text" name="password" required/></td>
+    <td><input type="password" autocomplete="off" name="password" required/></td>
 </tr>
 </table>
 
